@@ -1,7 +1,15 @@
 import { Card, Col, Button } from 'antd';
 
 export function FoodBox(props) {
-  const { name, image, calories, servings } = props.food;
+  const { name, image, calories, servings, index } = props.food;
+  const { array, setArray } = props;
+
+  function handleDelete(index) {
+    const clone = [...array];
+    clone.splice(index, 1);
+
+    setArray(clone);
+  }
 
   return (
     <Col>
@@ -12,7 +20,14 @@ export function FoodBox(props) {
         <p>
           <b>Total Calories: {calories * servings} </b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            handleDelete(index);
+          }}
+        >
+          Delete
+        </Button>
       </Card>
     </Col>
   );

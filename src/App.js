@@ -8,7 +8,7 @@ import { Search } from './Search';
 function App() {
   const [food, setFood] = useState(foods);
   const [search, setSearch] = useState({ search: '' });
-  console.log(search);
+  // console.log(search);
 
   return (
     <div className="App">
@@ -17,7 +17,7 @@ function App() {
       <Search search={search} setSearch={setSearch} />
       <Divider>Food List</Divider>
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {food.map((e) => {
+        {food.map((e, i) => {
           return (
             <FoodBox
               food={{
@@ -25,7 +25,10 @@ function App() {
                 calories: e.calories,
                 image: e.image,
                 servings: e.servings,
+                index: i,
               }}
+              array={food}
+              setArray={setFood}
             />
           );
         })}
